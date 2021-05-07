@@ -10,8 +10,7 @@ Habilidades:
 - Criativa 
 - Trabalho bem em grupos
 - Inglês intermediário 
-- Espanhol intermediário
-- Canva
+- Espanhol basico
 - Focada
 
 Formação:
