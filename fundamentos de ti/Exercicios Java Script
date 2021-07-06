@@ -1,0 +1,97 @@
+
+Receber uma string como argumento e informar se é um arquivo ou diretório.
+
+#!/bin/bash  # Interpretador shell
+var=$(ls -ld $1) # $1 é o primeiro argumento enviado para o script
+tam=${var:0:1} # cortar a minha string / ${nome_variavel:inicio:fim}
+if [ $tam = 'd' ]
+then
+        echo "é diretório"
+else
+        echo "é arquivo"
+fi
+
+EXPLICAÇÃO:
+
+
+_______________________________________________________________
+
+Receber como argumento o nome de um arquivo a ser criado. Antes de criar, o script deve verificar se o arquivo já existe e, em caso positivo, emitir um alerta ao usuário.
+
+Definir se o arquivo enviado existe, caso exista ele quer emitir uma alerta que já existe e caso não exista ele quer criar o arquivo.
+
+LOOP:
+#!/bin/bash
+teste=0
+for i in $( ls )
+do
+        if [ $i == $1 ]
+        then
+                teste=1
+                echo "Aquivo já existe"
+        fi
+done
+
+if [ $teste -eq 0 ]
+then
+        echo "Criando arquivo $1"
+        touch $1
+fi
+
+
+____________________________
+VETOR:
+#!/bin/bash
+var=$(ls)
+var1=${var/$1} # $1 é o primeiro argumento enviado para o script
+if [[ $var != $var1 ]]
+then
+	echo "O arquivo existe"
+else
+	echo "Criando o arquivo $1 ..."
+	touch $1
+fi
+
+
+
+
+
+
+
+
+______________________________________________________________________
+O script deverá verificar se o login desejado já existe no sistema e emitir um alerta, caso já exista.
+
+#!/bin/bash
+var=$(cat /etc/passwd | grep $1)
+if [ -z $var ] # -z  se a variavel estiver vazia
+then
+        echo "O usuário n existe no sistema"
+else
+        echo "O usuário já está cadastrado"
+fi
+
+
+
+
+
+
+
+
+
+______________________________________________________________________
+Crie um script em shell que mostre a linha de um arquivo contendo a palavra “incerteza”. O arquivo deverá ser passado como parâmetro, ou seja, a execução será algo como: ./script.sh arquivo. *Caso nenhum arquivo seja passado como parâmetro, deverá obter a saída: “Erro, arquivo faltando”.
+
+#!/bin/bash
+if [ -z $1 ] 
+then
+    echo "Erro, arquivo faltando"
+else
+    cat $1 | grep -i "incerteza" # opção -i ignora a diferença entre maiúsculo e minúsculo
+fi
+------------------------------------------
+Esse é um arquivo exemplo
+O script que usará este arquivo busca a palavra 'incerteza'
+será que encontrará?
+
+-----------------------------------------
